@@ -39,6 +39,7 @@ namespace WpfApplication1
             GrilleAffiche.ColumnDefinitions.Clear();
             GrilleAffiche.Children.Clear();
             GrilleAffiche.RowDefinitions.Clear();
+            AfficheGrilleStackPanel.Children.Clear();
 
             GrilleAffiche.Background = new SolidColorBrush(Colors.Green);
             Grille g = App.SudokuViewModels.GrilleSelect;
@@ -52,22 +53,32 @@ namespace WpfApplication1
             }
             for (int i = 0; i < g.size; i++)
             {
+                string s = "";
                 for (int j = 0; j < g.size; j++)
                 {
+                    // Ajouter le btn sur griille
                     Button b = new Button();
                     //b.Margin = new Thickness(10);
-                    b.Content = "ok";
-//b.Content = g.Mytab[i, j].valeur;
-                    /*
-                    if (g.Mytab[i, j].valeur == '.')
+                  //  b.Content = "ok";
+                    b.Content = g.TabGrille[i, j];
+
+                    if (g.TabGrille[i, j]=='.')
                     {
-                        b.Background = new SolidColorBrush(Colors.Chocolate);
-                    }*/
+                        b.Background = new SolidColorBrush(Colors.Red);
+                    }
                     Grid.SetColumn(b, i);
                     Grid.SetRow(b, j);
                     GrilleAffiche.Children.Add(b);
+                    
+                    s += g.TabGrille[i, j].ToString();
+                    
                 }
+                // Ajouter le grille à resoluer
+                TextBlock tb = new TextBlock();
+                tb.Text = s;
+                AfficheGrilleStackPanel.Children.Add(tb);
             }
+            
         }
 
         

@@ -42,7 +42,7 @@
             <TextBlock Grid.Column="2" Text="{Binding GrilleSelect.Date}"/>
             <TextBlock Grid.Column="3" Text="{Binding GrilleSelect.Symbole}"/>
         </StackPanel>
-        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Background="White">
+        <StackPanel Name="AfficheGrilleStackPanel" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Background="White">
             <TextBlock Grid.Column="1" Text="{Binding GrilleSelect.GrilleToString}"/>
             
         </StackPanel>
