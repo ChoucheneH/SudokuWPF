@@ -30,6 +30,46 @@ namespace WpfApplication1
         {
             App.SudokuViewModels.ImporterGrilles();
         }
- 
+
+        private void SudokuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            
+            GrilleAffiche.ShowGridLines = true;
+            GrilleAffiche.ColumnDefinitions.Clear();
+            GrilleAffiche.Children.Clear();
+            GrilleAffiche.RowDefinitions.Clear();
+
+            GrilleAffiche.Background = new SolidColorBrush(Colors.Green);
+            Grille g = App.SudokuViewModels.GrilleSelect;
+
+
+            for (int i = 0; i < g.size; i++)
+            {
+                GrilleAffiche.ColumnDefinitions.Add(new ColumnDefinition());
+                GrilleAffiche.RowDefinitions.Add(new RowDefinition());
+
+            }
+            for (int i = 0; i < g.size; i++)
+            {
+                for (int j = 0; j < g.size; j++)
+                {
+                    Button b = new Button();
+                    //b.Margin = new Thickness(10);
+                    b.Content = "ok";
+//b.Content = g.Mytab[i, j].valeur;
+                    /*
+                    if (g.Mytab[i, j].valeur == '.')
+                    {
+                        b.Background = new SolidColorBrush(Colors.Chocolate);
+                    }*/
+                    Grid.SetColumn(b, i);
+                    Grid.SetRow(b, j);
+                    GrilleAffiche.Children.Add(b);
+                }
+            }
+        }
+
+        
     }
 }

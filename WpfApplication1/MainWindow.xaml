@@ -16,14 +16,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0">
-<TextBox Name="importTextBox" Text="{Binding o}">
+            <TextBox Name="importTextBox" Text="{Binding fileNameImport}">
 </TextBox>
             <Button Name="importButton" Content="Importer" Click="btn_import">
             </Button>
         </StackPanel>
 
-        <ListBox Grid.Row ="1" Grid.Column="0" Grid.RowSpan="3" SelectedItem="{Binding GrilleSelect}" ItemsSource="{Binding GrilleList}"
-                 ToolTip="{Binding GrilleList.Count}">
+        <ListBox Name="SudokuListBox" Grid.Row ="1" Grid.Column="0" Grid.RowSpan="3" SelectedItem="{Binding GrilleSelect}" ItemsSource="{Binding GrilleList}"
+                 ToolTip="{Binding GrilleList.Count}" Height="239" VerticalAlignment="Top" SelectionChanged="SudokuListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -37,10 +37,17 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Background="CadetBlue">
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1" Background="CadetBlue">
             <TextBlock Grid.Column="1" Text="{Binding GrilleSelect.Nom}"/>
             <TextBlock Grid.Column="2" Text="{Binding GrilleSelect.Date}"/>
-            <TextBlock Grid.Column="3" Text="{Binding GrilleSelect.symbole}"/>
+            <TextBlock Grid.Column="3" Text="{Binding GrilleSelect.Symbole}"/>
         </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Background="White">
+            <TextBlock Grid.Column="1" Text="{Binding GrilleSelect.GrilleToString}"/>
+            
+        </StackPanel>
+        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="GrilleAffiche" Background="Aqua"  >
+            
+        </Grid>
     </Grid>
 </Window>

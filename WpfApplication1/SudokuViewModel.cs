@@ -12,51 +12,70 @@ using System.Windows;
 using System.IO;
 namespace WpfApplication1
 {
-    
-   public class SudokuViewModel
+
+    public class SudokuViewModel
     {
+        OpenFileDialog oFDImport;
         public string nomApp { get; set; }
         public Grille GrilleSelect { get; set; }
         public ObservableCollection<Grille> GrilleList { get; set; }
-        public string fileNameImport { get;set;}
+        public string fileNameImport { get; set; }
         public SudokuViewModel()
         {
-            nomApp = "Sudoku" ;
-            GrilleList = new ObservableCollection<Grille> ();
-          
-            GrilleList.Add(new Grille { Nom = "Grille 1" ,Date= DateTime.Now.ToString(),symbole = "123456789"});
-            GrilleList.Add(new Grille { Nom = "Grille 2", Date = DateTime.Now.ToString(), symbole = "123456789" });
-            GrilleList.Add(new Grille { Nom = "Grille 3", Date = DateTime.Now.ToString(), symbole = "123456789"});
-
-        }
-       internal void AjouterGrille()
-        {
-            int x = GrilleList.Count + 1;
-            Grille g = new Grille
-            {
-                Nom = "grille ",
-                Date = DateTime.Now.ToString(),
-                symbole = "12346789",
-            };
-
-            
-            GrilleList.Add(g);
+            nomApp = "Sudoku";
+            GrilleList = new ObservableCollection<Grille>();
         }
 
         internal void ImporterGrilles()
         {
-            OpenFileDialog oFDImport = new OpenFileDialog();
-            if (oFDImport.ShowDialog()==true)
-	            {
-                    if (VérifierFichier(oFDImport.FileName))
-                    {
-                        MessageBox.Show("Yes");
-                    }else{
-                        MessageBox.Show("No");
-                    }
-                    
-	            }            
+            oFDImport = new OpenFileDialog();
+            if (oFDImport.ShowDialog() == true)
+            {
+                fileNameImport = oFDImport.FileName;
+                if (VérifierFichier(fileNameImport))
+                {
+                    ImporterDepuisUnFichier(fileNameImport);
+
+                }
+                else
+                {
+                    //MessageBox.Show("Erreur ");
+                }
+
+            }
         }
+
+        private void ImporterDepuisUnFichier(string path)
+        {
+            string nom, date, symbole;
+            char[,] tab;
+            using (StreamReader reader = new StreamReader(fileNameImport))
+            {
+                while ((reader.ReadLine()) != null)
+                {
+
+                    nom = reader.ReadLine();
+                    date = reader.ReadLine();
+                    symbole = reader.ReadLine();
+                    tab = new char[symbole.Length, symbole.Length];
+                    for (int i = 0; i < symbole.Length; i++)
+                    {
+                        char[] ligne = reader.ReadLine().ToCharArray();
+                        int j = 0;
+                        foreach (char c in ligne)
+                        {
+                            tab[i, j] = c;
+                            j++;
+                            // Console.WriteLine(c);
+                        }
+
+                    }
+                    Grille g = new Grille(nom,date,symbole,tab);
+                    GrilleList.Add(g);
+                }
+            }
+        }
+
         internal bool VérifierFichier(string path)
         {
             try
@@ -76,6 +95,7 @@ namespace WpfApplication1
             }
 
         }
+
+
     }
-        
 }
