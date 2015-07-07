@@ -40,6 +40,9 @@ namespace WpfApplication1
                     }
                     else
                     {
+                        MessageBox.Show("Il manque qlq fonctionnalité au Grille.cs");
+                        goto Fin;
+                        /*
                         InitialiserTabVérifNombre();
                         nbHypothese = size;
                         RechercheParLigne(Tab[i, j], i, j);
@@ -58,10 +61,12 @@ namespace WpfApplication1
 
                         }
                         tabCase[i, j] = new Case(Tab[i, j], nbHypothese, Hypotheses);
-
+                        */
                     }
                 }
+                         
             }
+            Fin:;
         }
 
         private void RechercheParRegion(char p, int i, int j)
