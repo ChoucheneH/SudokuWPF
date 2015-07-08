@@ -20,6 +20,7 @@ namespace WpfApplication1
         public Grille GrilleSelect { get; set; }
         public ObservableCollection<Grille> GrilleList { get; set; }
         public string fileNameImport { get; set; }
+        
         public SudokuViewModel()
         {
             nomApp = "Sudoku";
@@ -35,7 +36,7 @@ namespace WpfApplication1
                 if (VérifierFichier(fileNameImport))
                 {
                     ImporterDepuisUnFichier(fileNameImport);
-
+                    
                 }
                 else
                 {
@@ -95,7 +96,6 @@ namespace WpfApplication1
             }
 
         }
-
 
     }
 }

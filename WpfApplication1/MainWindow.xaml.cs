@@ -20,65 +20,110 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool ButtonsEstVisible { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             DataContext = App.SudokuViewModels;
+            //ButtonsEstVisible = false;
         }
 
         private void btn_import(object sender, RoutedEventArgs e)
         {
             App.SudokuViewModels.ImporterGrilles();
+            importTextBox.Text = App.SudokuViewModels.fileNameImport;
+            //importTextBox.ToolTip = App.SudokuViewModels.fileNameImport;
         }
 
         private void SudokuListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            
-            GrilleAffiche.ShowGridLines = true;
-            GrilleAffiche.ColumnDefinitions.Clear();
-            GrilleAffiche.Children.Clear();
-            GrilleAffiche.RowDefinitions.Clear();
-            AfficheGrilleStackPanel.Children.Clear();
 
-            GrilleAffiche.Background = new SolidColorBrush(Colors.Green);
+
+            InitialiserLesComposants();
             Grille g = App.SudokuViewModels.GrilleSelect;
-
-
-            for (int i = 0; i < g.size; i++)
-            {
-                GrilleAffiche.ColumnDefinitions.Add(new ColumnDefinition());
-                GrilleAffiche.RowDefinitions.Add(new RowDefinition());
-
-            }
+            AjouteLigColGrid(g);
             for (int i = 0; i < g.size; i++)
             {
                 string s = "";
                 for (int j = 0; j < g.size; j++)
                 {
+                    string TextToolTip = App.SudokuViewModels.GrilleSelect.TabCase[j, i].HypothesesToString;
                     // Ajouter le btn sur griille
-                    Button b = new Button();
-                    //b.Margin = new Thickness(10);
-                  //  b.Content = "ok";
-                    b.Content = g.TabGrille[i, j];
-
-                    if (g.TabGrille[i, j]=='.')
+                    TextBlock b = new TextBlock();
+                    b.ToolTip = TextToolTip;
+                   
+                    b.Text = g.TabCase[j, i].Valeur.ToString();
+                    
+                    if (g.TabGrille[j, i]=='.')
                     {
-                        b.Background = new SolidColorBrush(Colors.Red);
+                        if(TextToolTip.Length==1)
+                            b.Background = new SolidColorBrush(Colors.YellowGreen);
+                        else if(TextToolTip.Length==2)
+                            b.Background = new SolidColorBrush(Colors.SeaGreen);
+                        else
+                            b.Background = new SolidColorBrush(Colors.Red);
                     }
                     Grid.SetColumn(b, i);
                     Grid.SetRow(b, j);
-                    GrilleAffiche.Children.Add(b);
+                    AfficheGrid.Children.Add(b);
                     
                     s += g.TabGrille[i, j].ToString();
                     
                 }
                 // Ajouter le grille à resoluer
-                TextBlock tb = new TextBlock();
-                tb.Text = s;
-                AfficheGrilleStackPanel.Children.Add(tb);
+                AjouterSodukoàResolu(s);
             }
+            EtatButtonResoluUnHypo();
+            EtatButtonResoluDeuxHypo();
             
+        }
+
+        private void EtatButtonResoluDeuxHypo()
+        {
+            ResoluDeuxHypotheseButton.Visibility = Visibility.Visible;
+        }
+
+        private void EtatButtonResoluUnHypo()
+        {
+            ResoluUnHypotheseButton.Visibility = Visibility.Visible;
+        }
+
+        private void AjouterSodukoàResolu(string s)
+        {
+            TextBlock tb = new TextBlock();
+            tb.Text = s;
+            AfficheGrilleStackPanel.Children.Add(tb);
+        }
+
+        private void AjouteLigColGrid(Grille g)
+        {
+            for (int i = 0; i < g.size; i++)
+            {
+                AfficheGrid.ColumnDefinitions.Add(new ColumnDefinition());
+                AfficheGrid.RowDefinitions.Add(new RowDefinition());
+
+            }
+        }
+
+        private void InitialiserLesComposants()
+        {
+            AfficheGrid.ColumnDefinitions.Clear();
+            AfficheGrid.Children.Clear();
+            AfficheGrid.RowDefinitions.Clear();
+            AfficheGrid.ShowGridLines = true;
+ 
+            AfficheGrilleStackPanel.Children.Clear();
+            AfficheGrid.Background = new SolidColorBrush(Colors.Green);
+        }
+
+        private void ResoluUnHypotheseButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("à faire - MainWindow");
+        }
+
+        private void ResoluDeuxHypotheseButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("à faire - MainWindow");
         }
 
         

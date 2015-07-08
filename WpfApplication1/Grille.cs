@@ -9,6 +9,7 @@ namespace WpfApplication1
 {
     public class Grille
     {
+        private Case[,] tabCase;
         private bool[] tabVérifNombre;
         private int nbHypothese;
         private char[] Hypotheses;
@@ -30,6 +31,13 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < size; j++)
                 {
+
+                    nbHypothese = 1;
+                    Hypotheses = new char[nbHypothese];
+                    Hypotheses[0] = Tab[i, j];
+                    tabCase[i, j] = new Case(Tab[i, j], nbHypothese, Hypotheses);
+
+
                     if (Symbole.IndexOf(Tab[i, j]) != -1)
                     {
                         nbHypothese = 1;
@@ -40,16 +48,20 @@ namespace WpfApplication1
                     }
                     else
                     {
-                        MessageBox.Show("Il manque qlq fonctionnalité au Grille.cs");
-                        goto Fin;
-                        /*
+                        //MessageBox.Show("Il manque qlq fonctionnalité au Grille.cs");
+                        
                         InitialiserTabVérifNombre();
                         nbHypothese = size;
                         RechercheParLigne(Tab[i, j], i, j);
+                        
                         RechercheParColonne(Tab[i, j], i, j);
+                        
                         RechercheParRegion(Tab[i, j], i, j);
+                        
                         Hypotheses = new char[nbHypothese];
+                        
                         int compte = 0;
+                         
                         for (int p = 0; p < size; p++)
                         {
                             if (!tabVérifNombre[p])
@@ -60,61 +72,121 @@ namespace WpfApplication1
                             }
 
                         }
+                     
                         tabCase[i, j] = new Case(Tab[i, j], nbHypothese, Hypotheses);
-                        */
+                        
                     }
                 }
-                         
             }
-            Fin:;
         }
 
-        private void RechercheParRegion(char p, int i, int j)
+        private void RechercheParRegion(char c, int lig, int col)
         {
-            MessageBox.Show("RechercheParRegion : à traiter ");
+            if (nbHypothese > 1)
+            {
+                int tailleCarré = (int)Math.Sqrt(size);
+                bool CarréEstValide = false;
+                int divC, divL, modC, modL;
+
+                divC = col / tailleCarré;
+                modC = col % tailleCarré;
+                divL = lig / tailleCarré;
+                modL = lig % tailleCarré;
+
+                for (int i = divL * tailleCarré; i < divL * tailleCarré + tailleCarré; i++)
+                {
+                    if (i != col)
+                    {
+                        for (int j = divC * tailleCarré; j < divC * tailleCarré + tailleCarré; j++)
+                        {
+                            if (j != col)
+                            {
+                                if (Symbole.IndexOf(TabGrille[i, j]) != -1 && !tabVérifNombre[Symbole.IndexOf(TabGrille[i, j])])
+                                {
+                                    setVrai(Symbole.IndexOf(c));
+                                    CarréEstValide = true;
+                                }
+                                else
+                                {
+                                    CarréEstValide = false;
+                                    break;
+                                }
+                                if (!CarréEstValide)
+                                    break;
+                            }
+
+
+                        }
+                    }
+
+                }
+
+            }
         }
 
-        private void RechercheParColonne(char p, int i, int j)
+        private void RechercheParColonne(char c, int lig, int col)
         {
-            MessageBox.Show("RechercheParCollonne: à traiter ");
+            if (nbHypothese > 1)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    if (i != lig)
+                    {
+                        if (Symbole.IndexOf(TabGrille[i, col]) != -1 && !tabVérifNombre[Symbole.IndexOf(TabGrille[i, col])])
+                        {
+                            setVrai(Symbole.IndexOf(TabGrille[i, col]));
+
+                        }
+                    }
+                }
+            }
         }
 
-        private void RechercheParLigne(char p, int i, int j)
+        private void RechercheParLigne(char c, int lig, int col)
         {
-            MessageBox.Show("RechercheParLigne : à traiter ");
+            if (nbHypothese > 1)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    if (i != col)
+                    {
+                        if (Symbole.IndexOf(TabGrille[lig, i]) != -1 && !tabVérifNombre[Symbole.IndexOf(TabGrille[lig, i])])
+                        {
+                            setVrai(Symbole.IndexOf(TabGrille[lig, i]));
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        private void setVrai(int indice)
+        {
+            tabVérifNombre[indice] = true;
+            if (nbHypothese != 0)
+                nbHypothese--;
         }
 
         private void InitialiserTabVérifNombre()
         {
-            MessageBox.Show("InitialiserTabVérifNombre : à traiter ");
+            tabVérifNombre = new bool[size];
+
+            for (int i = 0; i < size; i++)
+                tabVérifNombre[i] = false;
         }
-        private Case[,] tabCase;
+        
         public string Nom { get; set; }
         public string Date { get; set; }
         public string Symbole { get; set; }
         public char[,] TabGrille { get; set; }
-        public string GrilleToString { get {return ConvertTabToString(TabGrille); } }
-        
+        public Case[,] TabCase { get{return tabCase;} }
         public int size { get { return Symbole.Length; } }
 
         public override string ToString()
         {
             return Nom + "" + Date;
         }
-        public string ConvertTabToString(char[,] tab)
-        {
-            string s="";
-            for (int i = 0; i < size; i++)
-            {
-                for (int j = 0; j < size; j++)
-                {
-                    s += tab[i, j];
-                }
-                s += "\\n";
-            }
-            return "";
-        }
-
+        
        
     }
 }

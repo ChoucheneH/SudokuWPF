@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WpfApplication1
 {
-    class Case
+    public class Case
     {
         // private string valeur;
         private int nbHypothese;
@@ -26,7 +26,16 @@ namespace WpfApplication1
         public int NbHypothese { get { return nbHypothese; } set { nbHypothese = value; } }
         public char[] Hypotheses { get { return hypotheses; } set { hypotheses = value; } }
 
+        public string HypothesesToString { get { return ConvertTabCharToString(); } }
 
+        public string ConvertTabCharToString() {
+            string s="";
+            for (int i = 0; i < NbHypothese; i++)
+            {
+                s += Hypotheses[i].ToString();
+            }
+            return s;
+        }
 
     }
 }
