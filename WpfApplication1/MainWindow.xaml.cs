@@ -39,9 +39,22 @@ namespace WpfApplication1
         {
 
 
+            InitialiserGrille();
+            
+        }
+
+        private void InitialiserGrille()
+        {
             InitialiserLesComposants();
             Grille g = App.SudokuViewModels.GrilleSelect;
             AjouteLigColGrid(g);
+            CréerLesComposantsDeGrille(g);
+            EtatButtonResoluUnHypo();
+            EtatButtonResoluDeuxHypo();
+        }
+
+        private void CréerLesComposantsDeGrille(Grille g)
+        {
             for (int i = 0; i < g.size; i++)
             {
                 string s = "";
@@ -51,14 +64,14 @@ namespace WpfApplication1
                     // Ajouter le btn sur griille
                     TextBlock b = new TextBlock();
                     b.ToolTip = TextToolTip;
-                   
+
                     b.Text = g.TabCase[j, i].Valeur.ToString();
-                    
-                    if (g.TabGrille[j, i]=='.')
+
+                    if (g.TabGrille[j, i] == '.')
                     {
-                        if(TextToolTip.Length==1)
+                        if (TextToolTip.Length == 1)
                             b.Background = new SolidColorBrush(Colors.YellowGreen);
-                        else if(TextToolTip.Length==2)
+                        else if (TextToolTip.Length == 2)
                             b.Background = new SolidColorBrush(Colors.SeaGreen);
                         else
                             b.Background = new SolidColorBrush(Colors.Red);
@@ -66,16 +79,13 @@ namespace WpfApplication1
                     Grid.SetColumn(b, i);
                     Grid.SetRow(b, j);
                     AfficheGrid.Children.Add(b);
-                    
+
                     s += g.TabGrille[i, j].ToString();
-                    
+
                 }
                 // Ajouter le grille à resoluer
                 AjouterSodukoàResolu(s);
             }
-            EtatButtonResoluUnHypo();
-            EtatButtonResoluDeuxHypo();
-            
         }
 
         private void EtatButtonResoluDeuxHypo()
@@ -90,8 +100,13 @@ namespace WpfApplication1
 
         private void AjouterSodukoàResolu(string s)
         {
+
             TextBlock tb = new TextBlock();
             tb.Text = s;
+            tb.FontSize = 10;
+            
+            
+
             AfficheGrilleStackPanel.Children.Add(tb);
         }
 
@@ -118,7 +133,31 @@ namespace WpfApplication1
 
         private void ResoluUnHypotheseButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("à faire - MainWindow");
+            Grille gr = App.SudokuViewModels.GrilleSelect;
+
+
+            for (int i = 0; i < gr.size; i++)
+            {
+                for (int j = 0; j < gr.size; j++)
+                {
+                    if (gr.TabCase[i, j].NbHypothese == 1 && gr.TabCase[i, j].Valeur.Equals('.'))
+                    {
+                        MessageBox.Show("On va changer la valeur de [" + (i+1) + "," + (j+1) + "];");
+                        gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
+                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
+                        gr.GrilleMiseàjour();
+                        RepaintGrille();
+
+                        goto Exit;
+                    }
+                }
+            }
+        Exit: ;
+        }
+
+        private void RepaintGrille()
+        {
+            InitialiserGrille();
         }
 
         private void ResoluDeuxHypotheseButton_Click(object sender, RoutedEventArgs e)

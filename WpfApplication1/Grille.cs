@@ -186,7 +186,17 @@ namespace WpfApplication1
         {
             return Nom + "" + Date;
         }
-        
-       
+
+
+
+        internal void ChangerLaValeurDuTab(int i, int j, char p)
+        {
+            TabGrille[i, j] = p;
+        }
+
+        internal void GrilleMiseàjour()
+        {
+            CréerLesCases(TabGrille);
+        }
     }
 }

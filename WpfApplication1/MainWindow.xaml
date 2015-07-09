@@ -8,21 +8,28 @@
             <ColumnDefinition Width= "*"/>
             <ColumnDefinition Width= "*"/>
             <ColumnDefinition Width= "*"/>
+             <ColumnDefinition Width= "*"/>
+                           
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            
             <TextBox Name="importTextBox" IsEnabled="False" Text="{Binding fileNameImport}">
             </TextBox>
             <Button Name="importButton" Content="Importer" Click="btn_import">
             </Button>
         </StackPanel>
 
-        <ListBox Name="SudokuListBox" Grid.Row ="1" Grid.Column="0" Grid.RowSpan="3" SelectedItem="{Binding GrilleSelect}" ItemsSource="{Binding GrilleList}"
+        <ListBox Name="SudokuListBox" Grid.Row ="1" Grid.Column="0" Grid.RowSpan="7" SelectedItem="{Binding GrilleSelect}" ItemsSource="{Binding GrilleList}"
                  ToolTip="{Binding GrilleList.Count}" Height="239" VerticalAlignment="Top" SelectionChanged="SudokuListBox_SelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -31,13 +38,14 @@
                             <ColumnDefinition Width= "*"/>
                             <ColumnDefinition Width= "*"/>
                             <ColumnDefinition Width= "*"/>
+                            
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="{Binding Nom}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Column="2" Grid.RowSpan="3" VerticalScrollBarVisibility="Auto">
             <StackPanel Name="AfficheDetailsGrilleStackPanel" Background="CadetBlue">
                 <TextBlock Grid.Row="1" Text="{Binding GrilleSelect.Nom}"/>
                 <TextBlock Grid.Row="2" Text="{Binding GrilleSelect.Date}"/>
@@ -46,13 +54,19 @@
                 <Button Grid.Row="5" Grid.Column="1" Name="ResoluDeuxHypotheseButton" Content="Resolu 2 hypo" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluDeuxHypotheseButton_Click" />
             </StackPanel>
         </ScrollViewer>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="0" Grid.Column="3" Grid.RowSpan="3">
+            <StackPanel Name="AfficheGrilleStackPanel" Background="White">
+                <TextBlock Grid.Column="1" Text="{Binding GrilleSelect.GrilleToString}"/>
+
+            </StackPanel>
+        </ScrollViewer>
         
-        <StackPanel Name="AfficheGrilleStackPanel" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="1" Background="White">
-            <TextBlock Grid.Column="1" Text="{Binding GrilleSelect.GrilleToString}"/>
+        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="5" VerticalScrollBarVisibility="Auto">
 
-        </StackPanel>
-        <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="AfficheGrid" Background="Aqua"  >
+            <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="AfficheGrid" Background="Aqua"  >
 
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </Window>

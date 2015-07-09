@@ -46,7 +46,6 @@ C:\Users\hedhili\Documents\Visual Studio 2013\Projects\WpfApplication1\WpfApplic
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\ProjetSudokuWPF\WpfApplication1\bin\Debug\WpfApplication1.exe.config
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\ProjetSudokuWPF\WpfApplication1\obj\Debug\WpfApplication1.exe
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\ProjetSudokuWPF\WpfApplication1\obj\Debug\WpfApplication1.pdb
-C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\SokudoWPF.csprojResolveAssemblyReference.cache
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\MainWindow.baml
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\MainWindow.g.cs
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\App.g.cs
@@ -89,5 +88,6 @@ C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfAppli
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\bin\Debug\ru\System.Windows.Interactivity.resources.dll
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
+C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\SokudoWPF.csprojResolveAssemblyReference.cache
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\WpfApplication1.exe
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\WpfApplication1.pdb
