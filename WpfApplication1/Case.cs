@@ -7,6 +7,7 @@ namespace WpfApplication1
 {
     public class Case
     {
+        bool LigneDéjaFait = false;
         // private string valeur;
         private int nbHypothese;
         private char valeur;
@@ -27,6 +28,7 @@ namespace WpfApplication1
         public char[] Hypotheses { get { return hypotheses; } set { hypotheses = value; } }
 
         public string HypothesesToString { get { return ConvertTabCharToString(); } }
+        public bool LigneJumeauDéjaFait { get { return LigneDéjaFait; } set { LigneDéjaFait = value; } }
 
         public string ConvertTabCharToString() {
             string s="";

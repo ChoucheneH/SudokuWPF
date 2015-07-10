@@ -61,24 +61,26 @@ namespace WpfApplication1
                 for (int j = 0; j < g.size; j++)
                 {
                     string TextToolTip = App.SudokuViewModels.GrilleSelect.TabCase[j, i].HypothesesToString;
-                    // Ajouter le btn sur griille
-                    TextBlock b = new TextBlock();
-                    b.ToolTip = TextToolTip;
-
-                    b.Text = g.TabCase[j, i].Valeur.ToString();
-
+                    // Ajouter le text sur griille
+                    TextBlock tb = new TextBlock();
+                    tb.ToolTip = TextToolTip;
+                    tb.HorizontalAlignment = HorizontalAlignment.Center;
+                    tb.VerticalAlignment = VerticalAlignment.Center;
+                    tb.FontWeight = FontWeights.UltraBold;
+                    tb.Text = g.TabCase[j, i].Valeur.ToString();
+                   // lbl.Parent = AfficheGrid;
                     if (g.TabGrille[j, i] == '.')
                     {
                         if (TextToolTip.Length == 1)
-                            b.Background = new SolidColorBrush(Colors.YellowGreen);
+                            tb.Foreground = new SolidColorBrush(Colors.YellowGreen);
                         else if (TextToolTip.Length == 2)
-                            b.Background = new SolidColorBrush(Colors.SeaGreen);
+                            tb.Foreground = new SolidColorBrush(Colors.SeaGreen);
                         else
-                            b.Background = new SolidColorBrush(Colors.Red);
+                            tb.Foreground = new SolidColorBrush(Colors.Red);
                     }
-                    Grid.SetColumn(b, i);
-                    Grid.SetRow(b, j);
-                    AfficheGrid.Children.Add(b);
+                    Grid.SetColumn(tb, i);
+                    Grid.SetRow(tb, j);
+                    AfficheGrid.Children.Add(tb);
 
                     s += g.TabGrille[i, j].ToString();
 
@@ -128,7 +130,7 @@ namespace WpfApplication1
             AfficheGrid.ShowGridLines = true;
  
             AfficheGrilleStackPanel.Children.Clear();
-            AfficheGrid.Background = new SolidColorBrush(Colors.Green);
+           
         }
 
         private void ResoluUnHypotheseButton_Click(object sender, RoutedEventArgs e)
@@ -162,9 +164,56 @@ namespace WpfApplication1
 
         private void ResoluDeuxHypotheseButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("à faire - MainWindow");
+            
+            Grille gr = App.SudokuViewModels.GrilleSelect;
+
+
+            for (int i = 0; i < gr.size; i++)
+            {
+                for (int j = 0; j < gr.size; j++)
+                {
+                    if (gr.TabCase[i, j].NbHypothese == 2 && gr.Aunjumeau(i, j)&&(!gr.TabCase[i,j].LigneJumeauDéjaFait))
+                    {
+                        MessageBox.Show("On va changer la valeur de [" + (i+1) + "," + (j+1) + "];");
+                        RepaintGrille();
+                        goto Exit;
+
+                    }
+                    /*    
+                    else if (gr.TabCase[i, j].NbHypothese == 2)
+                        {
+                            MessageBox.Show(i + "-" + j + " n a pas un jumeau dans carré ");
+                             goto Exit;
+                        }
+                     * /
+                        /*
+                         * gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
+                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
+                        gr.GrilleMiseàjour();
+                        RepaintGrille();
+                        */
+                       
+                    }
+                }
+
+
+        Exit: ;
         }
 
+        /*
+         Les commentaires au dessous c'st un exemple de binding
+         * ( hors de travail mais on peux l'utiliser pour améliore le travail
+
         
+         * textbocj tb = nw blocktext
+        Binding myb = new Binding("v");
+        myb.source= App.sod.grillsele.tab[i,j];
+        myb.updatesourcetrigger = UpdateSourceTrigger.proprtychanged;
+         tb.setbidding(textbocj.textpropty,mubinding);
+         * grid.setcolumn();
+         * grid.setrow();
+         * frgrid.children.add(tb);
+         * et on ajoute propety en clsse case*/
+
     }
 }
