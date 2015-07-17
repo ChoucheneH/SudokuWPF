@@ -51,6 +51,7 @@ namespace WpfApplication1
             CréerLesComposantsDeGrille(g);
             EtatButtonResoluUnHypo();
             EtatButtonResoluDeuxHypo();
+            EtatButtonResoluGrille();
         }
 
         private void CréerLesComposantsDeGrille(Grille g)
@@ -98,6 +99,11 @@ namespace WpfApplication1
         private void EtatButtonResoluUnHypo()
         {
             ResoluUnHypotheseButton.Visibility = Visibility.Visible;
+        }
+
+        private void EtatButtonResoluGrille()
+        {
+            ResoluGrilleButton.Visibility = Visibility.Visible;
         }
 
         private void AjouterSodukoàResolu(string s)
@@ -198,6 +204,66 @@ namespace WpfApplication1
 
 
         Exit: ;
+        }
+        private void ResoluGrilleButton_Click(object sender, RoutedEventArgs e)
+        {
+            Boolean grilleResolu=false;
+            while (!grilleResolu)
+            {
+                if (!ResolutionUnHypothese())
+                    if (!ResolutionDeuxHypotheses())
+                        grilleResolu = true;
+            }
+        }
+        private Boolean ResolutionUnHypothese()
+        {
+            Boolean caseResolu = false;
+            Grille gr = App.SudokuViewModels.GrilleSelect;
+
+
+            for (int i = 0; i < gr.size; i++)
+            {
+                for (int j = 0; j < gr.size; j++)
+                {
+                    if (gr.TabCase[i, j].NbHypothese == 1 && gr.TabCase[i, j].Valeur.Equals('.'))
+                    {
+                        MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
+                        gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
+                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
+                        gr.GrilleMiseàjour();
+                        RepaintGrille();
+                        caseResolu = true;
+                        goto Exit;
+                    }
+                }
+            }
+        Exit: return caseResolu;
+        }
+
+        private Boolean ResolutionDeuxHypotheses()
+        {
+            Boolean caseResolu = false;
+            Grille gr = App.SudokuViewModels.GrilleSelect;
+
+
+            for (int i = 0; i < gr.size; i++)
+            {
+                for (int j = 0; j < gr.size; j++)
+                {
+                    if (gr.TabCase[i, j].NbHypothese == 2 && gr.Aunjumeau(i, j) && (!gr.TabCase[i, j].LigneJumeauDéjaFait))
+                    {
+                        MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
+                        RepaintGrille();
+                        caseResolu = true;
+                        goto Exit;
+
+                    }
+
+                }
+            }
+
+
+        Exit: return caseResolu;
         }
 
         /*

@@ -91,3 +91,16 @@ C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfAppli
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\SokudoWPF.csprojResolveAssemblyReference.cache
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\WpfApplication1.exe
 C:\Users\hedhili\Documents\Visual Studio 2013\Projects\SodukoProjectWPF\WpfApplication1\obj\Debug\WpfApplication1.pdb
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\bin\Debug\WpfApplication1.exe.config
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\WpfApplication1.exe
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\WpfApplication1.pdb
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\bin\Debug\WpfApplication1.exe
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\bin\Debug\WpfApplication1.pdb
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\SokudoWPF.csprojResolveAssemblyReference.cache
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\MainWindow.baml
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\MainWindow.g.cs
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\App.g.cs
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\WpfApplication1_MarkupCompile.cache
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\WpfApplication1.g.resources
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
+C:\Users\Damien\Documents\Visual Studio 2012\Projects\SudokuWPF\WpfApplication1\obj\Debug\SokudoWPF.csproj.GenerateResource.Cache
