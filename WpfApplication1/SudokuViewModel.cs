@@ -30,6 +30,9 @@ namespace WpfApplication1
         internal void ImporterGrilles()
         {
             oFDImport = new OpenFileDialog();
+            oFDImport.Filter = "Sudoku Files|*.sud";
+            oFDImport.FilterIndex = 1;
+
             if (oFDImport.ShowDialog() == true)
             {
                 fileNameImport = oFDImport.FileName;

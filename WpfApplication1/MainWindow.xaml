@@ -46,7 +46,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <ScrollViewer Grid.Column="2" Grid.RowSpan="3" VerticalScrollBarVisibility="Auto">
-            <StackPanel Name="AfficheDetailsGrilleStackPanel" Background="CadetBlue">
+            <StackPanel Name="AfficheDetailsGrilleStackPanel" Background="AliceBlue">
                 <TextBlock Grid.Row="1" Text="{Binding GrilleSelect.Nom}"/>
                 <TextBlock Grid.Row="2" Text="{Binding GrilleSelect.Date}"/>
                 <TextBlock Grid.Row="3" Text="{Binding GrilleSelect.Symbole}"/>
@@ -65,7 +65,7 @@
         
         <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="5" VerticalScrollBarVisibility="Auto">
 
-            <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="AfficheGrid" Background="Aqua"  >
+            <Grid Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Name="AfficheGrid" Background="LightCyan"  >
 
             </Grid>
         </ScrollViewer>

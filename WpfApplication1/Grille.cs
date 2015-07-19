@@ -266,6 +266,7 @@ namespace WpfApplication1
                     {
                         if ((TabCase[k, i].HypothesesToString).IndexOf(TabJumeau[0].Hypotheses[1]) != -1 && TabCase[k, i].NbHypothese > 1)
                         {
+                            
                             Char[] hypo = new char[TabCase[k, i].NbHypothese - 1];
                             for (int l = 0; l < TabCase[k, i].NbHypothese; l++)
                             {
@@ -276,7 +277,6 @@ namespace WpfApplication1
                             TabCase[k, i].NbHypothese = hypo.Length;
                             TabCase[k, i].LigneJumeauDéjaFait = true;
                         }
-
                     }
                 }
 
@@ -340,7 +340,7 @@ namespace WpfApplication1
                         if ((TabCase[i,k].HypothesesToString).IndexOf(TabJumeau[0].Hypotheses[1])!=-1 && TabCase[i,k].NbHypothese>1)
                         {
                             Char[] hypo = new char[TabCase[i,k].NbHypothese - 1];
-                            for (int l = 0; l < TabCase[i,k].NbHypothese; l++)
+                            for (int l = 0; l < TabCase[i, k].NbHypothese; l++)
                             {
                                 if (TabCase[i, k].Hypotheses[l] != TabJumeau[0].Hypotheses[1])
                                 hypo[l] = TabCase[i, k].Hypotheses[l];
@@ -349,7 +349,6 @@ namespace WpfApplication1
                             TabCase[i, k].NbHypothese = hypo.Length;
                             TabCase[i, k].LigneJumeauDéjaFait = true;
                         }
-                        
                     }
                 }
 

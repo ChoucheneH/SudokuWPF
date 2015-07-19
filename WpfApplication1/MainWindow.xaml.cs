@@ -141,69 +141,15 @@ namespace WpfApplication1
 
         private void ResoluUnHypotheseButton_Click(object sender, RoutedEventArgs e)
         {
-            Grille gr = App.SudokuViewModels.GrilleSelect;
-
-
-            for (int i = 0; i < gr.size; i++)
-            {
-                for (int j = 0; j < gr.size; j++)
-                {
-                    if (gr.TabCase[i, j].NbHypothese == 1 && gr.TabCase[i, j].Valeur.Equals('.'))
-                    {
-                        MessageBox.Show("On va changer la valeur de [" + (i+1) + "," + (j+1) + "];");
-                        gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
-                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
-                        gr.GrilleMiseàjour();
-                        RepaintGrille();
-
-                        goto Exit;
-                    }
-                }
-            }
-        Exit: ;
+            ResoluUnHypotheseButton.IsEnabled= ResolutionUnHypothese();
         }
 
-        private void RepaintGrille()
-        {
-            InitialiserGrille();
-        }
+       
 
         private void ResoluDeuxHypotheseButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            Grille gr = App.SudokuViewModels.GrilleSelect;
-
-
-            for (int i = 0; i < gr.size; i++)
-            {
-                for (int j = 0; j < gr.size; j++)
-                {
-                    if (gr.TabCase[i, j].NbHypothese == 2 && gr.Aunjumeau(i, j)&&(!gr.TabCase[i,j].LigneJumeauDéjaFait))
-                    {
-                        MessageBox.Show("On va changer la valeur de [" + (i+1) + "," + (j+1) + "];");
-                        RepaintGrille();
-                        goto Exit;
-
-                    }
-                    /*    
-                    else if (gr.TabCase[i, j].NbHypothese == 2)
-                        {
-                            MessageBox.Show(i + "-" + j + " n a pas un jumeau dans carré ");
-                             goto Exit;
-                        }
-                     * /
-                        /*
-                         * gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
-                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
-                        gr.GrilleMiseàjour();
-                        RepaintGrille();
-                        */
-                       
-                    }
-                }
-
-
-        Exit: ;
+            ResoluDeuxHypotheseButton.IsEnabled = ResolutionDeuxHypotheses();
+            ResoluUnHypotheseButton.IsEnabled = ResoluDeuxHypotheseButton.IsEnabled;
         }
         private void ResoluGrilleButton_Click(object sender, RoutedEventArgs e)
         {
@@ -231,7 +177,7 @@ namespace WpfApplication1
                         gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
                         gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
                         gr.GrilleMiseàjour();
-                        RepaintGrille();
+                        InitialiserGrille();
                         caseResolu = true;
                         goto Exit;
                     }
@@ -253,12 +199,25 @@ namespace WpfApplication1
                     if (gr.TabCase[i, j].NbHypothese == 2 && gr.Aunjumeau(i, j) && (!gr.TabCase[i, j].LigneJumeauDéjaFait))
                     {
                         MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
-                        RepaintGrille();
+                        InitialiserGrille();
                         caseResolu = true;
                         goto Exit;
 
                     }
 
+                    /*    
+                    else if (gr.TabCase[i, j].NbHypothese == 2)
+                        {
+                            MessageBox.Show(i + "-" + j + " n a pas un jumeau dans carré ");
+                             goto Exit;
+                        }
+                     * /
+                        /*
+                         * gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
+                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
+                        gr.GrilleMiseàjour();
+                        RepaintGrille();
+                        */
                 }
             }
 
