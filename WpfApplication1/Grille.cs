@@ -222,26 +222,27 @@ namespace WpfApplication1
 
         private void RésoluJumeauColonne(Case[] TabJumeau, int i, int j)
         {
-            MessageBox.Show(i + "" + j);
+            MessageBox.Show("Colonne : "+i + " - " + j);
             int tailleCarré = (int)Math.Sqrt(size);
             if (TabJumeau[0].Hypotheses[0] == TabJumeau[1].Hypotheses[0])
             {
-                MessageBox.Show("valeur qu'on va change:" + TabJumeau[0].Hypotheses[0]);
+                MessageBox.Show("valeur qu'on va change 0010:" + TabJumeau[0].Hypotheses[0]);
                 for (int k = 0; k < size; k++)
                 {
                     if ((k < i || k >= ((i / tailleCarré) * tailleCarré) + tailleCarré))
                     {
-                        if ((TabCase[k, j].HypothesesToString).IndexOf(TabJumeau[0].Hypotheses[0]) != -1 && TabCase[k, j].NbHypothese > 1)
+                        if (TabCase[k, j].NbHypothese > 1 && (TabCase[k, j].HypothesesToString).IndexOf(TabJumeau[0].Hypotheses[0]) != -1 )
                         {
                             Char[] hypo = new char[TabCase[k, j].NbHypothese - 1];
+                            int x = 0;
                             for (int l = 0; l < TabCase[k, j].NbHypothese; l++)
                             {
                                 if (TabCase[k, j].Hypotheses[l] != TabJumeau[0].Hypotheses[0])
-                                    hypo[l] = TabCase[k, j].Hypotheses[l];
+                                    hypo[x++] = TabCase[k, j].Hypotheses[l];
                             }
                             TabCase[k, j].Hypotheses = hypo;
                             TabCase[k, j].NbHypothese = hypo.Length;
-                            TabCase[k, j].LigneJumeauDéjaFait = true;
+                            TabCase[i, j].ColonneJumeauDéjaFait = true;
                         }
 
                     }
@@ -250,15 +251,56 @@ namespace WpfApplication1
             }
             else if (TabJumeau[0].Hypotheses[0] == TabJumeau[1].Hypotheses[1])
             {
-                MessageBox.Show("valeur qu'on va change:" + TabJumeau[0].Hypotheses[0]);
+                MessageBox.Show("valeur qu'on va change 0011:" + TabJumeau[0].Hypotheses[0]);
+                for (int k = 0; k < size; k++)
+                {
+                    if ((k < i || k >= ((i / tailleCarré) * tailleCarré) + tailleCarré))
+                    {
+                        if ((TabCase[k, j].HypothesesToString).IndexOf(TabJumeau[0].Hypotheses[0]) != -1 && TabCase[k, j].NbHypothese > 1)
+                        {
+                            Char[] hypo = new char[TabCase[k, j].NbHypothese - 1];
+                            int x = 0;
+                            for (int l = 0; l < TabCase[k, j].NbHypothese; l++)
+                            {
+                                if (TabCase[k, j].Hypotheses[l] != TabJumeau[0].Hypotheses[0])
+                                    hypo[x++] = TabCase[k, j].Hypotheses[l];
+                            }
+                            TabCase[k, j].Hypotheses = hypo;
+                            TabCase[k, j].NbHypothese = hypo.Length;
+                            TabCase[i, j].ColonneJumeauDéjaFait = true;
+                        }
+
+                    }
+                }
+
             }
             else if (TabJumeau[0].Hypotheses[1] == TabJumeau[1].Hypotheses[0])
             {
-                MessageBox.Show("valeur qu'on va change:" + TabJumeau[0].Hypotheses[1]);
+                MessageBox.Show("valeur qu'on va change 0110:" + TabJumeau[0].Hypotheses[1]);
+                for (int k = 0; k < size; k++)
+                {
+                    if ((k < i || k >= ((i / tailleCarré) * tailleCarré) + tailleCarré))
+                    {
+                        if ((TabCase[k, j].HypothesesToString).IndexOf(TabJumeau[0].Hypotheses[1]) != -1 && TabCase[k, j].NbHypothese > 1)
+                        {
+                            Char[] hypo = new char[TabCase[k, j].NbHypothese - 1];
+                            int x = 0;
+                            for (int l = 0; l < TabCase[k, j].NbHypothese - 1; l++)
+                            {
+                                if (TabCase[k, j].Hypotheses[l] != TabJumeau[0].Hypotheses[1])
+                                    hypo[x++] = TabCase[k, j].Hypotheses[l];
+                            }
+                            TabCase[k, j].Hypotheses = hypo;
+                            TabCase[k, j].NbHypothese = hypo.Length;
+                            TabCase[i, j].ColonneJumeauDéjaFait = true;
+                        }
+
+                    }
+                }
             }
             else if (TabJumeau[0].Hypotheses[1] == TabJumeau[1].Hypotheses[1])
             {
-                MessageBox.Show("valeur qu'on va change:" + TabJumeau[0].Hypotheses[1]);
+                MessageBox.Show("valeur qu'on va change: 0111" + TabJumeau[0].Hypotheses[1]);
 
                 for (int k = 0; k < size; k++)
                 {
@@ -268,14 +310,15 @@ namespace WpfApplication1
                         {
                             
                             Char[] hypo = new char[TabCase[k, i].NbHypothese - 1];
-                            for (int l = 0; l < TabCase[k, i].NbHypothese; l++)
+                            int x = 0;
+                            for (int l = 0; l < TabCase[k, i].NbHypothese - 1; l++)
                             {
                                 if (TabCase[k, i].Hypotheses[l] != TabJumeau[0].Hypotheses[1])
-                                    hypo[l] = TabCase[k, i].Hypotheses[l];
+                                    hypo[x++] = TabCase[k, i].Hypotheses[l];
                             }
                             TabCase[k, i].Hypotheses = hypo;
                             TabCase[k, i].NbHypothese = hypo.Length;
-                            TabCase[k, i].LigneJumeauDéjaFait = true;
+                            TabCase[i, j].ColonneJumeauDéjaFait = true;
                         }
                     }
                 }
@@ -285,8 +328,9 @@ namespace WpfApplication1
         }
         private bool AunJumeauLigne(Case[,] TabCarreJumeau, int lig, int col)
         {
-            Case[] tabjum = new Case[2];
+            
             int tailleCarré = (int)Math.Sqrt(size);
+            Case[] tabjum = new Case[tailleCarré];
             bool CarréEstValide = false;
             int divC, divL, modC, modL;
 
@@ -315,7 +359,7 @@ namespace WpfApplication1
         }
         private void RésoluJumeauLigne(Case[] TabJumeau, int i, int j)
         {
-            MessageBox.Show(i + "" + j);
+            MessageBox.Show("Ligne : "+i + " - " + j);
             int tailleCarré = (int)Math.Sqrt(size);
             if (TabJumeau[0].Hypotheses[0] == TabJumeau[1].Hypotheses[0])
             {
@@ -358,8 +402,9 @@ namespace WpfApplication1
 
         private bool AunJumeauColonne(Case[,] TabCarreJumeau,int lig, int col)
         {
-            Case[] tabjum = new Case[2];
+            
             int tailleCarré = (int)Math.Sqrt(size);
+            Case[] tabjum = new Case[tailleCarré];
             bool CarréEstValide = false;
             int divC, divL, modC, modL;
 

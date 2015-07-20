@@ -173,7 +173,7 @@ namespace WpfApplication1
                 {
                     if (gr.TabCase[i, j].NbHypothese == 1 && gr.TabCase[i, j].Valeur.Equals('.'))
                     {
-                        MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
+                       // MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
                         gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
                         gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
                         gr.GrilleMiseàjour();
@@ -196,7 +196,7 @@ namespace WpfApplication1
             {
                 for (int j = 0; j < gr.size; j++)
                 {
-                    if (gr.TabCase[i, j].NbHypothese == 2 && gr.Aunjumeau(i, j) && (!gr.TabCase[i, j].LigneJumeauDéjaFait))
+                    if (gr.TabCase[i, j].NbHypothese == 2 && (!gr.TabCase[i, j].ColonneJumeauDéjaFait) && gr.Aunjumeau(i, j))
                     {
                         MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
                         InitialiserGrille();

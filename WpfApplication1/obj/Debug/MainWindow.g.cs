@@ -9,6 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using Microsoft.Expression.Media.Effects;
 using System;
 using System.Diagnostics;
 using System.Windows;
