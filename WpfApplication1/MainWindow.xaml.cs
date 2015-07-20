@@ -198,27 +198,12 @@ namespace WpfApplication1
                 {
                     if (gr.TabCase[i, j].NbHypothese == 2 && (!gr.TabCase[i, j].ColonneJumeauDéjaFait) && gr.Aunjumeau(i, j))
                     {
-                        MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
+                        //MessageBox.Show("On va changer la valeur de [" + (i + 1) + "," + (j + 1) + "];");
                         InitialiserGrille();
                         caseResolu = true;
                         goto Exit;
 
-                    }
-
-                    /*    
-                    else if (gr.TabCase[i, j].NbHypothese == 2)
-                        {
-                            MessageBox.Show(i + "-" + j + " n a pas un jumeau dans carré ");
-                             goto Exit;
-                        }
-                     * /
-                        /*
-                         * gr.TabGrille[i, j] = gr.TabCase[i, j].Valeur;
-                        gr.ChangerLaValeurDuTab(i, j, gr.TabCase[i, j].Hypotheses[0]);
-                        gr.GrilleMiseàjour();
-                        RepaintGrille();
-                        */
-                }
+                    }}
             }
 
 
