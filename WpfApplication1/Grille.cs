@@ -226,7 +226,7 @@ namespace WpfApplication1
             char x2 = TabJumeau[0].Hypotheses[1];
             char y1 = TabJumeau[1].Hypotheses[0];
             char y2 = TabJumeau[1].Hypotheses[1];
-            MessageBox.Show("Colonne : "+i + " - " + j);
+            //MessageBox.Show("Colonne : "+i + " - " + j);
             int tailleCarré = (int)Math.Sqrt(size);
             if (x1 == y1)
             {
@@ -252,7 +252,7 @@ namespace WpfApplication1
 
         private void TraiterColonne(int i, int j, char x1, int tailleCarré)
         {
-            MessageBox.Show("valeur qu'on va change 0010:" + x1);
+           // MessageBox.Show("valeur qu'on va change 0010:" + x1);
             int compte = 0;
             for (int k = 0; k < size; k++)
             {
@@ -316,7 +316,7 @@ namespace WpfApplication1
             char x2 = TabJumeau[0].Hypotheses[1];
             char y1 = TabJumeau[1].Hypotheses[0];
             char y2 = TabJumeau[1].Hypotheses[1];
-            MessageBox.Show("Ligne : "+i + " - " + j);
+            //MessageBox.Show("Ligne : "+i + " - " + j);
             int tailleCarré = (int)Math.Sqrt(size);
             if (x1 == y1)
             {
@@ -340,7 +340,7 @@ namespace WpfApplication1
 
         private void TraiterLigne(int i, int j, char x2, int tailleCarré)
         {
-            MessageBox.Show("valeur qui va change:" + x2);
+           // MessageBox.Show("valeur qui va change:" + x2);
             int compte = 0;
             for (int k = 0; k < size; k++)
             {
