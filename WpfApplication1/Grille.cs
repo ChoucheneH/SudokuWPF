@@ -181,6 +181,51 @@ namespace WpfApplication1
         public Case[] TabCaseJum { get { return tabCaseJum; } set { tabCaseJum=value;} }
         public int size { get { return Symbole.Length; } }
 
+        public int numberCaseResoluer { get { return numberCase();} }
+        public int numberCaseUnHypo { get { return numberCaseUnHypothese(); } }
+        public int numberCaseDeuxHypo { get { return numberCaseDeuxHypothese(); } }
+
+        private int numberCaseDeuxHypothese()
+        {
+            int compte = 0;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (tabCase[i, j].Valeur.Equals('.') && tabCase[i, j].NbHypothese == 2)
+                        compte++;
+                }
+            }
+            return compte;
+        }
+        private int numberCaseUnHypothese()
+        {
+            int compte = 0;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (tabCase[i, j].Valeur.Equals('.') && tabCase[i, j].NbHypothese==1)
+                        compte++;
+                }
+            }
+            return compte;
+        } 
+
+        private int numberCase()
+        {
+            int compte = 0;
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (tabCase[i, j].Valeur.Equals('.'))
+                        compte++;
+                }
+            }
+            return compte;
+        }
+
         public override string ToString()
         {
             return Nom + "" + Date;
@@ -334,7 +379,7 @@ namespace WpfApplication1
             {
                 TraiterLigne(i, j, x2, tailleCarré);
 
-                }
+            }
                             
         }
 
@@ -353,7 +398,10 @@ namespace WpfApplication1
                         for (int l = 0; l < TabCase[j, k].NbHypothese; l++)
                         {
                             if (TabCase[j, k].Hypotheses[l] != x2)
+                            {
                                 hypo[x++] = TabCase[j, k].Hypotheses[l];
+                            }
+                                
                         }
                         TabCase[j, k].Hypotheses = hypo;
                         TabCase[j, k].NbHypothese = hypo.Length;
