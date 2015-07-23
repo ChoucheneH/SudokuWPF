@@ -50,9 +50,9 @@
                 <TextBlock Grid.Row="1" Text="{Binding GrilleSelect.Nom}"/>
                 <TextBlock Grid.Row="2" Text="{Binding GrilleSelect.Date}"/>
                 <TextBlock Grid.Row="3" Text="{Binding GrilleSelect.Symbole}"/>
-                <Button Grid.Row="4" Grid.Column="0" Name="ResoluUnHypotheseButton" Content="Resolu 1 hypo" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluUnHypotheseButton_Click" />
-                <Button Grid.Row="5" Grid.Column="1" Name="ResoluDeuxHypotheseButton" Content="Resolu 2 hypo" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluDeuxHypotheseButton_Click" />
-                <Button Grid.Row="6" Grid.Column="1" Name="ResoluGrilleButton" Content="Resolu Grille" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluGrilleButton_Click" />
+                <Button Grid.Row="4" Grid.Column="0" Name="ResoluUnHypotheseButton" IsEnabled="{Binding numberCaseUnHypo}" Content="Resolu 1 hypo" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluUnHypotheseButton_Click" />
+                <Button Grid.Row="5" Grid.Column="1" Name="ResoluDeuxHypotheseButton" IsEnabled="{Binding numberCaseDeuxHypo}" Content="Resolu 2 hypo" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluDeuxHypotheseButton_Click" />
+                <Button Grid.Row="6" Grid.Column="1" Name="ResoluGrilleButton" IsEnabled="{Binding NumberDeCase}" Content="Resolu Grille" Visibility="Hidden" VerticalAlignment="Center" HorizontalAlignment="Center" Click="ResoluGrilleButton_Click" />
             </StackPanel>
         </ScrollViewer>
 

@@ -20,7 +20,36 @@ namespace WpfApplication1
         public Grille GrilleSelect { get; set; }
         public ObservableCollection<Grille> GrilleList { get; set; }
         public string fileNameImport { get; set; }
-        
+        public bool NumberDeCase
+        {
+            get
+            {
+                if (GrilleSelect != null)
+                    return GrilleSelect.numberCaseResoluer == 0;
+                else return true;
+            }
+        }
+        public bool numberCaseUnHypo
+        {
+            get
+            {
+                if (GrilleSelect != null)
+                    return GrilleSelect.numberCaseUnHypo == 0;
+
+                else
+                    return true;
+            }
+        }
+        public bool numberCaseDeuxHypo
+        {
+            get
+            {
+                if (GrilleSelect != null)
+                    return GrilleSelect.numberCaseDeuxHypo == 0;
+                else
+                    return true;
+            }
+        }
         public SudokuViewModel()
         {
             nomApp = "Sudoku";

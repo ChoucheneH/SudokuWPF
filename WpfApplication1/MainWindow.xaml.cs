@@ -153,7 +153,7 @@ namespace WpfApplication1
         }
         private void ResoluGrilleButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("ok");
+            //MessageBox.Show("ok");
             Grille gr = App.SudokuViewModels.GrilleSelect;
             Boolean grilleResolu = false;
             while (!grilleResolu)
